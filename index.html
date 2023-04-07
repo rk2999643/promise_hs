@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Question.1 Write one example explaining how you can write a callback function.</h3>
+    <pre>
+        function first(b) {
+            console.log(b);
+              
+        }
+          
+          function second(a) {
+            a++;
+            first(a);
+          }
+          second(4);
+    </pre>
+    <h3>Question.2 </h3>
+    <pre>
+        function printNum(callback) {
+            let number = 1;
+            const printNumber = () => {
+              console.log(number);
+              number++;
+              if (number <= 7) {
+                setTimeout(printNumber, number * 1000);
+              } else {
+                callback();
+              }
+            };
+            setTimeout(printNumber, number * 1000);
+          }
+          printNum(() => console.log("Done!"));
+    </pre>
+    <h3>Question.3</h3>
+    <pre>
+        const printNumber = (time,func) =>{
+            return new Promise((resolve,reject) =>{
+                if(func){
+                    setTimeout(() => {
+                        resolve(func());
+                    }, time);
+                   
+                } else {
+                    reject("put a valid number");
+                }
+            })
+        }
+        
+        printNumber(0,() => console.log("Number Printed"))
+        .then(() =>{
+            return printNumber(1000, () => console.log('1'))
+        })
+        .then(() =>{
+            return printNumber(2000, () => console.log('2'))
+        })
+        .then(() =>{
+            return printNumber(3000, () => console.log('3'))
+        })
+        .then(() =>{
+            return printNumber(4000, () => console.log('4'))
+        })
+        .then(() =>{
+            return printNumber(5000, () => console.log('5'))
+        })
+        .then(() =>{
+            return printNumber(6000, () => console.log('6'))
+        })
+        .then(() =>{
+            return printNumber(7000, () => console.log('7'))
+        })
+    </pre>
+    <h3>Question.4 "Create a promise function accepting an argument, if yes is passed to the function then it should go to resolved state and print Promise Resolved, and if nothing is passed 
+        then it should go to reject the state and catch the error and print Promise Rejected "</h3>
+    <pre>
+        function checkValue(value) {
+            return new Promise((resolve, reject) => {
+              if (value === 'check') {
+                 resolve('Promise Resolved');
+               } else {
+                 reject('Promise Rejected');
+               }
+             });
+           }
+           
+           checkValue('check')
+             .then((result) => {
+               console.log(result);
+             })
+             .catch((error) => {
+               console.log(error);
+             });  
+    </pre>
+    <h3>Question.5 Create examples to explain callback function</h3>
+    <pre>
+        function add(a, b, callback) {
+            let output = a + b;
+            callback(output);
+            }
+                  
+            function addition(output) {
+            console.log('The result is: ' + output);
+            }
+                  
+            add(100, 10,  addition);
+    </pre>
+
+    <h3>Question.6 Create examples to explain callback hell function</h3>
+    <pre>
+        setTimeout(() => {
+            console.log('1')
+            setTimeout(() => {
+              console.log('2')
+              setTimeout(() => {
+                console.log('3')
+                setTimeout(() => {
+                  console.log('4')
+                  setTimeout(() => {
+                    console.log('5')
+                    setTimeout(() => {
+                      console.log('6')
+                      setTimeout(() => {
+                        console.log('7')
+                        
+                      }, 7000);
+                    }, 6000);
+                  }, 5000);
+                }, 4000);
+              }, 3000);
+            }, 2000);
+          }, 1000);
+    </pre>
+    <h3>Question.7 Create examples to explain promises function</h3>
+    <pre>
+        const promiseFunc = new Promise ((resolve,reject) => {
+
+            let num=34
+            if(num>32){
+                resolve('You Are Pass the Exam')
+            }
+            else{
+                reject('FAIL')
+            }
+            
+          })
+          promiseFunc
+         .then((x) => console.log(x))
+         .catch((err) => console.log(err))
+    </pre>
+    <h3>Question.8 Create examples to explain async await function</h3>
+    <pre>
+        function fetchData() {
+            return new Promise(resolve => {
+              setTimeout(() => resolve('Data received!'), 2000);
+            });
+          }
+          
+          async function printData() {
+            console.log("Fetching data...");
+            const data = await fetchData();
+            console.log(data);
+          }
+          
+          printData();
+    </pre>
+    <h3>Question.9 Create examples to explain promise.all function</h3>
+    <pre>
+        const abc = ()=>
+new Promise((resolve,reject) =>{
+  setTimeout(() => resolve(), 1000);
+})
+
+const xyz = ()=>
+new Promise((resolve,reject) =>{
+  setTimeout(() => resolve(), 2000);
+})
+
+const final =() => console.log("Both are Executed")
+
+Promise.all([abc(),xyz()]).then(() => {
+  final()
+})
+    </pre>
+    <script src="./script.js"></script>
+</body>
+</html>
